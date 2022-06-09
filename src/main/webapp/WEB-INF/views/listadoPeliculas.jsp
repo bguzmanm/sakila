@@ -20,6 +20,7 @@
                 <th>Descripción</th>
                 <th>Año</th>
                 <th>Rating</th>
+                <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -30,6 +31,7 @@
                     <td><c:out value="${p.getDescription()}"></c:out></td>
                     <td><c:out value="${p.getRelease_year()}"></c:out></td>
                     <td><c:out value="${p.getRating()}"></c:out></td>
+                    <td><a href="${pageContext.request.contextPath}/peliculas/${p.getFilm_id()}"><i class="fa-solid fa-pen-to-square"></i></a></td>
                 </tr>
             </c:forEach>
             </tbody>

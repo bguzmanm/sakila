@@ -33,4 +33,14 @@ public class Film {
         this.rating = rating;
     }
 
+    @Override
+    public String toString() {
+        return "Film{" +
+                "film_id=" + film_id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", release_year=" + release_year +
+                ", rating='" + rating + '\'' +
+                '}';
+    }
 }

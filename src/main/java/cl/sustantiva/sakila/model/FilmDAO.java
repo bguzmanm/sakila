@@ -27,12 +27,16 @@ public class FilmDAO implements IFilmDAO {
 
     @Override
     public Film read(int id) {
-        return null;
+        String sql = "select film_id, title, description, release_year, rating from film WHERE film_id = ?";
+
+        return this.template.queryForObject(sql, new Object[]{id}, new FilmRowMapper());
     }
 
     @Override
     public boolean update(Film f) {
-        return false;
+        String sql = "UPDATE film set title = ?, description = ?, release_year = ?, rating = ? WHERE film_id = ? ";
+
+        return this.template.update(sql, new Object[]{f.getTitle(), f.getDescription(), f.getRelease_year(), f.getRating(), f.getFilm_id()})>0;
     }
 
     @Override

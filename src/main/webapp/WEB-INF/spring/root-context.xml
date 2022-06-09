@@ -23,7 +23,7 @@
         <property name="template" ref="jt"></property>
     </bean>
 
-    <context:component-scan base-package="cl.sustantiva.sakila" />
+    <context:component-scan base-package="cl.sustantiva.sakila.controller" />
 
 
 </beans>

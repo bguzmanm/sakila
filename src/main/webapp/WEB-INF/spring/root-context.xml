@@ -22,6 +22,9 @@
     <bean id="FilmDAO" class="cl.sustantiva.sakila.model.FilmDAO">
         <property name="template" ref="jt"></property>
     </bean>
+    <bean id="ActorDAO" class="cl.sustantiva.sakila.model.ActorDAO">
+        <property name="template" ref="jt"></property>
+    </bean>
 
     <context:component-scan base-package="cl.sustantiva.sakila.controller" />
 

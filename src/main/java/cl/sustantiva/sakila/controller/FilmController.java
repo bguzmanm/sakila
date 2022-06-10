@@ -47,7 +47,33 @@ public class FilmController {
         fDAO.update(f);
 
         return "redirect:/peliculas";
+    }
+    @RequestMapping(value="/peliculas/new", method = RequestMethod.GET)
+    public String crearPelicula(){
+        return "nuevaPelicula";
+    }
+
+    @RequestMapping(value = "/peliculas/new", method = RequestMethod.POST)
+    public String crearPelicula(@RequestParam("title") String title,
+                                @RequestParam("description") String description,
+                                @RequestParam("release_year") int release_year,
+                                @RequestParam("rating") String rating){
+
+
+        Film f = new Film(0, title, description, release_year, rating);
+
+        fDAO.create(f);
+
+        return "redirect:/peliculas";
 
     }
+
+    @RequestMapping(value="/peliculas/del/{id}", method = RequestMethod.GET)
+    public String deletePelicula(@PathVariable("id") int id){
+
+        fDAO.delete(id);
+        return "redirect:/peliculas";
+    }
+
 
 }

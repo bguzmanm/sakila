@@ -15,8 +15,11 @@ public class FilmDAO implements IFilmDAO {
 
     @Override
     public boolean create(Film f) {
-        return false;
+        String sql = "insert into film (title, description, release_year, rating) values (?, ?, ?, ?)";
+
+        return template.update(sql,new Object[]{f.getTitle(), f.getDescription(), f.getRelease_year(), f.getRating()}) > 0;
     }
+
 
     @Override
     public List<Film> read() {
@@ -41,11 +44,13 @@ public class FilmDAO implements IFilmDAO {
 
     @Override
     public boolean delete(Film f) {
-        return false;
+        return delete(f.getFilm_id());
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        String sql = "DELETE FROM film where film_id = ?";
+        return this.template.update(sql,new Object[]{id})>0;
+
     }
 }

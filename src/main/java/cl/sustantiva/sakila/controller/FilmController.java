@@ -1,7 +1,7 @@
 package cl.sustantiva.sakila.controller;
 
-import cl.sustantiva.sakila.model.Film;
-import cl.sustantiva.sakila.model.FilmDAO;
+import cl.sustantiva.sakila.service.FilmService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.*;
 public class FilmController {
 
     @Autowired
-    FilmDAO fDAO = new FilmDAO();
+    FilmService fService;
 
     @RequestMapping(path="/peliculas", method = RequestMethod.GET)
     public String getPeliculas(Model model){
 
-        model.addAttribute("films", fDAO.read());
+        model.addAttribute("films", fService.getAllFilms());
         return "listadoPeliculas";
     }
 
     @RequestMapping(path="/peliculas/{id}", method = RequestMethod.GET)
     public String getPelicula(@PathVariable("id") int id, Model model){
-        model.addAttribute("pelicula", fDAO.read(id));
+        model.addAttribute("pelicula", fService.getOne(id));
 
         return "pelicula";
     }
@@ -35,16 +35,7 @@ public class FilmController {
                                  @RequestParam("release_year") int release_year,
                                  @RequestParam("rating") String rating){
 
-        Film f = fDAO.read(film_id);
-
-        System.out.println(f.toString());
-
-        f.setDescription(description);
-        f.setRating(rating);
-        f.setRelease_year(release_year);
-        f.setTitle(title);
-
-        fDAO.update(f);
+        fService.update(film_id, title, description, release_year, rating);
 
         return "redirect:/peliculas";
     }
@@ -60,9 +51,7 @@ public class FilmController {
                                 @RequestParam("rating") String rating){
 
 
-        Film f = new Film(0, title, description, release_year, rating);
-
-        fDAO.create(f);
+        fService.create(title, description, release_year, rating);
 
         return "redirect:/peliculas";
 
@@ -71,8 +60,15 @@ public class FilmController {
     @RequestMapping(value="/peliculas/del/{id}", method = RequestMethod.GET)
     public String deletePelicula(@PathVariable("id") int id){
 
-        fDAO.delete(id);
+        fService.delete(id);
         return "redirect:/peliculas";
+    }
+
+    @RequestMapping(value="/peliculas/actor/{id}")
+    public String getFilmsByActor(@PathVariable("id") int actor_id, Model model){
+
+        model.addAttribute("films", fService.getFilmsByActor(actor_id));
+        return "listadoPeliculas";
     }
 
 

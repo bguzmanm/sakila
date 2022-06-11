@@ -35,6 +35,7 @@
           <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/">Home</a>
             <a class="nav-link" href="${pageContext.request.contextPath}/peliculas">Películas</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/actor">Actor</a>
           </div>
         </div>
       </div>

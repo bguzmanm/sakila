@@ -40,7 +40,7 @@
                             class="fa-solid fa-pen-to-square"></i></a>
                     <a href="${pageContext.request.contextPath}/peliculas/del/${p.getFilm_id()}" title="Borrar Película"><i
                             class="fa-solid fa-trash-can"></i></a>
-                    <a href="${pageContext.request.contextPath}/actoresPelicula/${p.getFilm_id()}" title="Ver Actores">
+                    <a href="${pageContext.request.contextPath}/actores/pelicula/${p.getFilm_id()}" title="Ver Actores">
                         <i class="fa-solid fa-user-group"></i></a>
                 </td>
             </tr>

@@ -1,6 +1,6 @@
-package cl.sustantiva.sakila.model.idao;
+package cl.sustantiva.sakila.model.dao;
 
-import cl.sustantiva.sakila.model.Film;
+import cl.sustantiva.sakila.model.entity.Film;
 
 import java.util.List;
 
@@ -12,5 +12,7 @@ public interface IFilmDAO {
     public boolean update(Film f);
     public boolean delete(Film f);
     public boolean delete(int id);
+
+    public List<Film> readByActor(int actor_id);
 
 }

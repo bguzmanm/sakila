@@ -1,4 +1,4 @@
-package cl.sustantiva.sakila.model;
+package cl.sustantiva.sakila.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;

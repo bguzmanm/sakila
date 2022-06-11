@@ -9,7 +9,11 @@
 <%@include file="header.jsp" %>
 
 <main>
-    <h1>Listado de Actores de <c:out value="${pelicula.getTitle()}"></c:out></h1>
+    <h1>Listado de Actores
+        <c:if test="${not empty pelicula}">
+            <c:out value="${pelicula.getTitle()}"></c:out>
+        </c:if>
+    </h1>
     <div class="row pb-2 justify-content-end">
         <table id="actors" class="table">
             <thead class="table-dark">
@@ -17,6 +21,7 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
+                <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +30,7 @@
                     <th><c:out value="${a.getActor_id()}"></c:out></th>
                     <td><c:out value="${a.getFirst_name()}"></c:out></td>
                     <td><c:out value="${a.getLast_name()}"></c:out></td>
+                    <td><a href="${pageContext.request.contextPath}/peliculas/actor/<c:out value="${a.getActor_id()}"></c:out>" alt="Ver Peliculas"><i class="fa-solid fa-film"></i></a></td>
                 </tr>
 
             </c:forEach>

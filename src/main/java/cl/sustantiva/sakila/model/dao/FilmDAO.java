@@ -1,6 +1,7 @@
-package cl.sustantiva.sakila.model;
+package cl.sustantiva.sakila.model.dao;
 
-import cl.sustantiva.sakila.model.idao.IFilmDAO;
+import cl.sustantiva.sakila.model.entity.Film;
+import cl.sustantiva.sakila.model.mapper.FilmRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
@@ -52,5 +53,14 @@ public class FilmDAO implements IFilmDAO {
         String sql = "DELETE FROM film where film_id = ?";
         return this.template.update(sql,new Object[]{id})>0;
 
+    }
+
+    @Override
+    public List<Film> readByActor(int actor_id) {
+        String sql = "select f.film_id, title, description, release_year, rating " +
+                "from film f inner join film_actor fa on f.film_id = fa.film_id " +
+                "where fa.actor_id = ?";
+
+        return this.template.query(sql, new Object[]{actor_id}, new FilmRowMapper());
     }
 }

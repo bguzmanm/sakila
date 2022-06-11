@@ -1,6 +1,7 @@
-package cl.sustantiva.sakila.model;
+package cl.sustantiva.sakila.model.dao;
 
-import cl.sustantiva.sakila.model.idao.IActorDAO;
+import cl.sustantiva.sakila.model.entity.Actor;
+import cl.sustantiva.sakila.model.mapper.ActorRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
@@ -19,5 +20,12 @@ public class ActorDAO implements IActorDAO {
                 "FROM actor a INNER JOIN film_actor fa ON a.actor_id = fa.actor_id WHERE fa.film_id = ?";
 
         return template.query(sql, new Object[]{film_id}, new ActorRowMapper());
+    }
+
+    @Override
+    public List<Actor> read() {
+        String sql = "select actor_id, first_name, last_name from actor";
+
+        return template.query(sql, new ActorRowMapper());
     }
 }

@@ -19,14 +19,15 @@
         <property name="dataSource" ref="ds"></property>
     </bean>
 
-    <bean id="FilmDAO" class="cl.sustantiva.sakila.model.FilmDAO">
+    <bean id="FilmDAO" class="cl.sustantiva.sakila.model.dao.FilmDAO">
         <property name="template" ref="jt"></property>
     </bean>
-    <bean id="ActorDAO" class="cl.sustantiva.sakila.model.ActorDAO">
+    <bean id="ActorDAO" class="cl.sustantiva.sakila.model.dao.ActorDAO">
         <property name="template" ref="jt"></property>
     </bean>
 
     <context:component-scan base-package="cl.sustantiva.sakila.controller" />
+    <context:component-scan base-package="cl.sustantiva.sakila.service" />
 
 
 </beans>

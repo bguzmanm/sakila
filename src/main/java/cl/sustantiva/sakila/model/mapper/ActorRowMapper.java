@@ -1,6 +1,7 @@
-package cl.sustantiva.sakila.model;
+package cl.sustantiva.sakila.model.mapper;
 
 
+import cl.sustantiva.sakila.model.entity.Actor;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
